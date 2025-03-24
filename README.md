@@ -71,7 +71,7 @@ Since data sources vary widely between projects, **this repository does not incl
 
 1. Tokenize your data (e.g., with Hugging Face Tokenizers).
 2. Convert text into token IDs and arrange into tensors of shape (batch_size, seq_len).
-3. Feed them to the model in BERT style (with segment labels) or GPT style (causal).
+3. Feed them to the model in BERT style (with segment labels) or GPT style (causal).\
 You can adapt the placeholder in LLM_sample_run.py or create your own.
 
 ## Example command
