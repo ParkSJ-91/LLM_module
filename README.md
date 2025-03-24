@@ -57,7 +57,7 @@ print("Output shape:", output.shape)  # [2, 10, vocab_size]
 The file LLM_sample_run.py contains a reference script for training:
 1. **Distributed initialization**
    It uses torch.distributed.init_process_group(backend='nccl') for multi-GPU setups.
-2. **Model construction & wrapping((
+2. **Model construction & wrapping**
    Creates a GPT-style TransformerLM and wraps it with FullyShardedDataParallel.
 3. **Mixed precision & gradient scaling**
    Showcases how to use autocast and GradScaler for performance optimization.
