@@ -13,15 +13,16 @@ This repository provides sample code for creating and training large language mo
    git clone https://github.com/YourUsername/LLM-sample.git
    cd LLM-sample
 2. Install dependencies:
-   cuda                         11.8
-   python                       3.9.0
-   pytorch                      2.0.1 (py3.9_cuda11.8_cudnn8.7.0_0)
-   torchdata                    0.6.1
-   torchtext                    0.15.2
-   transformers                 4.42.3
-   triton                       2.1.0
-   einops                       0.8.0
-   flash-attn                   2.5.9.post1
+   
+   cuda                         11.8\
+   python                       3.9.0\
+   pytorch                      2.0.1 (py3.9_cuda11.8_cudnn8.7.0_0)\
+   torchdata                    0.6.1\
+   torchtext                    0.15.2\
+   transformers                 4.42.3\
+   triton                       2.1.0\
+   einops                       0.8.0\
+   flash-attn                   2.5.9.post1\
    numpy                        1.26.4
 
 ## Getting Started
@@ -62,6 +63,7 @@ The file LLM_sample_run.py contains a reference script for training:
    Showcases how to use autocast and GradScaler for performance optimization.
 4. **Optimizer & Scheduler**
    Uses AdamW and OneCycleLR, with gradient clipping.
+   
 **Important**: The script references a function load_data() which is not implemented. You must replace or define this function with your own data loading pipeline, returning batches of input tensors.
 
 ## Data Loading
