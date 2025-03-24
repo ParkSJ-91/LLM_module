@@ -74,7 +74,8 @@ You can adapt the placeholder in LLM_sample_run.py or create your own.
 
 ## Example command
 Once you have your data loader implemented, you could run (for example):
-```torchrun --nproc_per_node=4 LLM_sample_run.py \
+```bash
+torchrun --nproc_per_node=4 LLM_sample_run.py \
   --epochs 10 \
   --learning_rate 3e-4 \
   --length 1024 \
