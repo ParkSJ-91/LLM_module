@@ -53,6 +53,30 @@ dummy_input = torch.randint(low=1, high=32000, size=(2, 10), dtype=torch.long)
 output = model(dummy_input)
 print("Output shape:", output.shape)  # [2, 10, vocab_size]
 ```
+```bash
+import torch
+from Optimus_sample_module import TransformerVAE
+
+# Example: Transformer based VAE (with flash-attention)
+model = TransformerVAE(
+    ntoken=32000,       # vocabulary size
+    d_model=512,        # hidden dimension
+    nhead=8,            # number of attention heads
+    num_layers=6,       # number of Transformer layers
+    dim_feedforward=2048,
+    dropout=0.1,
+    batch_first=True,
+    norm_first=True,
+    d_latent=100        # size of latent dimension for VAE
+)
+
+# Dummy input (batch_size=2, seq_len=10)
+dummy_input = torch.randint(low=1, high=32000, size=(2, 10), dtype=torch.long)
+
+# Forward pass
+output = model(dummy_input)
+print("Output shape:", output.shape)  # [2, 10, vocab_size]
+```
 ## Training with FSDP
 The file LLM_sample_run.py contains a reference script for training:
 1. **Distributed initialization**\
@@ -66,14 +90,23 @@ The file LLM_sample_run.py contains a reference script for training:
    
 **Important**: The script references a function load_data() which is not implemented. You must replace or define this function with your own data loading pipeline, returning batches of input tensors.
 
+## Add VAE in transformer
+Optimus is adapted from **Li, Chunyuan, et al. "Optimus: Organizing sentences via pre-trained modeling of a latent space." arXiv preprint arXiv:2004.04092 (2020)**.
+It uses,
+1. **Variational autoencoder**\
+   It uses VAE between encoder and decoder. The decoder takes the compressed information of input from encoder and VAE and predict next token. 
+2. **Cyclic annealing**\
+   It uses cyclic annealing method to mitigate KL vanishing problem.
+   It is adapted from **Fu, Hao, et al. "Cyclical annealing schedule: A simple approach to mitigating kl vanishing." arXiv preprint arXiv:1903.10145 (2019)**.
+
 ## Data Loading
 Since data sources vary widely between projects, **this repository does not include a built-in data pipeline**. To integrate your data:
 
 1. Tokenize your data (e.g., with Hugging Face Tokenizers).
 2. Convert text into token IDs and arrange into tensors of shape (batch_size, seq_len).
-3. Feed them to the model in BERT style (with segment labels) or GPT style (causal).
+3. Feed them to the model in BERT style (with segment labels) or GPT style (causal) or Optimus style (Encoder + VAE + Decoder).
 
-You can adapt the placeholder in LLM_sample_run.py or create your own.
+You can adapt the placeholder in LLM_sample_run.py/Optimus_sample_run.py or create your own.
 
 ## Example command
 Once you have your data loader implemented, you could run (for example):
