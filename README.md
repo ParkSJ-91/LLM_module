@@ -90,7 +90,7 @@ The file LLM_sample_run.py contains a reference script for training:
    
 **Important**: The script references a function load_data() which is not implemented. You must replace or define this function with your own data loading pipeline, returning batches of input tensors.
 
-## Add VAE in transformer
+## Adding VAE in transformer
 Optimus is adapted from **Li, Chunyuan, et al. "Optimus: Organizing sentences via pre-trained modeling of a latent space." arXiv preprint arXiv:2004.04092 (2020)**.
 It uses,
 1. **Variational autoencoder**\
