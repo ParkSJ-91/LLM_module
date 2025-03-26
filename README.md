@@ -10,7 +10,7 @@ This repository provides sample code for creating and training large language mo
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/YourUsername/LLM-sample.git
+   git clone https://github.com/ParkSJ-91/LLM-sample.git
    cd LLM-sample
 2. Install dependencies:
    
